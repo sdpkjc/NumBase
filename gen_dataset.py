@@ -74,7 +74,7 @@ if __name__ == '__main__':
         dataset_url = f"sdpkjc/NumBase-N{num2chr(s_num_range[0])}{num2chr(s_num_range[1])}-S{num2chr(s_len_range[0])}{num2chr(s_len_range[1])}-B{num2chr(b_range[0])}{num2chr(b_range[1])}"
 
         dataset = generate_all_combinations(s_num_range, s_len_range, b_range)
-        # dataset = dataset.shuffle()
+        dataset = dataset.shuffle()
         # print(dataset)
         # print(dataset[-10:-1])
         test_dataset(dataset, s_num_range, s_len_range, b_range)
