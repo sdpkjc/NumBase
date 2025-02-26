@@ -69,13 +69,14 @@ def test_dataset(my_dataset, s_num_range, s_len_range, b_range):
 
 if __name__ == '__main__':
     s_num_range = (0, 1)
-    s_len_range, b_range = (2, 16), (2, 16)
-    dataset_url = f"sdpkjc/NumBase-N{num2chr(s_num_range[0])}{num2chr(s_num_range[1])}-S{num2chr(s_len_range[0])}{num2chr(s_len_range[1])}-B{num2chr(b_range[0])}{num2chr(b_range[1])}"
+    for sl_max, br_max in product([4, 8, 16], [4, 8, 16]):
+        s_len_range, b_range = (2, sl_max), (2, br_max)
+        dataset_url = f"sdpkjc/NumBase-N{num2chr(s_num_range[0])}{num2chr(s_num_range[1])}-S{num2chr(s_len_range[0])}{num2chr(s_len_range[1])}-B{num2chr(b_range[0])}{num2chr(b_range[1])}"
 
-    dataset = generate_all_combinations(s_num_range, s_len_range, b_range)
-    # dataset = dataset.shuffle()
-    print(dataset)
-    print(dataset[-10:-1])
-    test_dataset(dataset, s_num_range, s_len_range, b_range)
-    print(dataset_url)
-    dataset.push_to_hub(dataset_url)
+        dataset = generate_all_combinations(s_num_range, s_len_range, b_range)
+        # dataset = dataset.shuffle()
+        # print(dataset)
+        # print(dataset[-10:-1])
+        test_dataset(dataset, s_num_range, s_len_range, b_range)
+        print(dataset_url, "\n")
+        dataset.push_to_hub(dataset_url)
